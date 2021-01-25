@@ -66,6 +66,14 @@ OBS: The solution accepts words with it's length lesser and higher than the valu
 - Used GitHub for source control
 
 
+# How to test the Application ?
+
+- Just Unzip the zip file named "TecnhicalTest_WordLadder_Fernando_Aguiar.zip" from main project folder
+- Click twice on "WordLadder.ConsoleApplication.exe"
+- Fill the requested fields
+- Enjoy!
+
+
 # References:
 
 - https://en.wikipedia.org/wiki/Word_ladder
