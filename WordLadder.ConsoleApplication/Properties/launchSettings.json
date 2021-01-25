@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WordLadder": {
+      "commandName": "Project",
+      "commandLineArgs": "math nice 4 words-english.txt test.txt"
+    }
+  }
+}

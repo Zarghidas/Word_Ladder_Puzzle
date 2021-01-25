@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WordLadder.Api\WordLadder.Api.csproj" />
+    <ProjectReference Include="..\WordLadder.DependencyInjection\WordLadder.DependencyInjection.csproj" />
+    <ProjectReference Include="..\WordLadder.Infrastructure\WordLadder.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy &quot;$(ProjectDir)words-english.txt&quot; &quot;$(SolutionDir)WordLadder.ConsoleApplication\bin\Debug\netcoreapp3.1\words-english.txt&quot;" />
+  </Target>
+
+</Project>
