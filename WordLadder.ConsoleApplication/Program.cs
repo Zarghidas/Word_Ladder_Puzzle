@@ -1,10 +1,11 @@
-﻿using WordLadder.Api;
-using WordLadder.DependencyInjection;
-using WordLadder.Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using WordLadder.Api;
+using WordLadder.DependencyInjection;
+using WordLadder.Infrastructure;
+using WordLadder.Infrastructure.Resources;
 
 namespace WordLadder
 {
@@ -64,7 +65,7 @@ namespace WordLadder
                 stopWatch.Stop();
 
                 if (result.Count == 0)
-                    Console.WriteLine("There were no words returned from Result File");
+                    Console.WriteLine(ValidationMessages.NoWordsOnDictionary);
 
                 // Write the results on prompt
                 result.ForEach(x => Console.WriteLine(x.Text));
@@ -104,9 +105,11 @@ namespace WordLadder
 
                 Console.WriteLine(Environment.NewLine);
                 Console.WriteLine("Calculating Shortest Path...");
-                Console.WriteLine(Environment.NewLine);
+
                 // Calculate the Shortest Path from Start Word up to End Word
                 var calculator = wordCalculator.CalculateShortestPath(startWord, endWord, wordsLength, wordsList).Select(y => y.Text);
+
+                Console.WriteLine("Shortest Path Calculated Successfully.");
 
                 Console.WriteLine(Environment.NewLine);
                 Console.WriteLine("Saving Results to Output File...");
@@ -115,18 +118,19 @@ namespace WordLadder
                 {
                     // Save the Result to a file
                     fileLoader.SaveResultFile(resultFileName, calculator);
-                    Console.WriteLine(Environment.NewLine);
+                    Console.WriteLine("Results Saved Successfully.");
 
+                    Console.WriteLine(Environment.NewLine);
                     Console.WriteLine("Loading Results from Output File...");
                     // It was not asked to be done but i added it anyway to show the results on screen
                     result = fileLoader.LoadResultsDictionary(resultFileName).Select(x => new Word(x.ToLower())).ToList();
                 }
                 else
-                    Console.WriteLine("The Answer File name was not informed");
+                    Console.WriteLine(ValidationMessages.AnswerFileNameNotInformed);
             }
             else
             {
-                Console.WriteLine(string.Format("The Dictionary File does not exists in the path provided: {0})", dictionaryFile));
+                Console.WriteLine(string.Format(ValidationMessages.FileDoesNotExists, dictionaryFile));
             }
 
             return result;
